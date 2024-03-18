@@ -9,7 +9,6 @@ import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
 import com.example.trabalhosistemasdistribuidos.modelo.Horario;
 import com.example.trabalhosistemasdistribuidos.modelo.HorarioRemedio;
 import com.example.trabalhosistemasdistribuidos.modelo.Remedio;
-import com.example.trabalhosistemasdistribuidos.modelo.RemedioIdoso;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +24,6 @@ import javafx.scene.input.KeyEvent;
 
 public class VisualizarController {
 
-    private RemedioIdoso remedioIdoso;
     private Horario horarioM;
     private RemedioIdosoDAO jpa;
     private ObservableList<HorarioRemedio> lista;
@@ -79,9 +77,6 @@ public class VisualizarController {
             if(nome.getText().equals("")){
                 throw new CampoVazioExcecao();
             }
-            remedioIdoso = jpa.buscarRemedioIdosoNome(nome.getText());
-            verficarHorarios();
-            verifcarDias();
             lista = FXCollections.observableArrayList();
             for(int i = 0;i<24;i++){
                 if(listaHorario[i] != ""){
@@ -104,45 +99,6 @@ public class VisualizarController {
     void buscarTeclado(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             buscar(null);
-        }
-    }
-
-    private void verficarHorarios(){
-        listaHorario = new String[24];
-        listaHorario[0] = (remedioIdoso.getFkHorario().getH1()) ? "01:00" : "";
-        listaHorario[1] = (remedioIdoso.getFkHorario().getH2()) ? "02:00" : "";
-        listaHorario[2] = (remedioIdoso.getFkHorario().getH3()) ? "03:00" : "";
-        listaHorario[3] = (remedioIdoso.getFkHorario().getH4()) ? "04:00" : "";
-        listaHorario[4] = (remedioIdoso.getFkHorario().getH5()) ? "05:00" : "";
-        listaHorario[5] = (remedioIdoso.getFkHorario().getH6()) ? "06:00" : "";
-        listaHorario[6] = (remedioIdoso.getFkHorario().getH7()) ? "07:00" : "";
-        listaHorario[7] = (remedioIdoso.getFkHorario().getH8()) ? "08:00" : "";
-        listaHorario[8] = (remedioIdoso.getFkHorario().getH9()) ? "09:00" : "";
-        listaHorario[9] = (remedioIdoso.getFkHorario().getH10()) ? "10:00" : "";
-        listaHorario[10] = (remedioIdoso.getFkHorario().getH11()) ? "11:00" : "";
-        listaHorario[11] = (remedioIdoso.getFkHorario().getH12()) ? "12:00" : "";
-        listaHorario[12] = (remedioIdoso.getFkHorario().getH13()) ? "13:00" : "";
-        listaHorario[13] = (remedioIdoso.getFkHorario().getH14()) ? "14:00" : "";
-        listaHorario[14] = (remedioIdoso.getFkHorario().getH15()) ? "15:00" : "";
-        listaHorario[15] = (remedioIdoso.getFkHorario().getH16()) ? "16:00" : "";
-        listaHorario[16] = (remedioIdoso.getFkHorario().getH17()) ? "17:00" : "";
-        listaHorario[17] = (remedioIdoso.getFkHorario().getH18()) ? "18:00" : "";
-        listaHorario[18] = (remedioIdoso.getFkHorario().getH19()) ? "19:00" : "";
-        listaHorario[19] = (remedioIdoso.getFkHorario().getH20()) ? "20:00" : "";
-        listaHorario[20] = (remedioIdoso.getFkHorario().getH21()) ? "21:00" : "";
-        listaHorario[21] = (remedioIdoso.getFkHorario().getH22()) ? "22:00" : "";
-        listaHorario[22] = (remedioIdoso.getFkHorario().getH23()) ? "23:00" : "";
-        listaHorario[23] = (remedioIdoso.getFkHorario().getH24()) ? "24:00" : "";
-    }
-
-    private void verifcarDias(){
-        listaDias = new String[7];
-        for(int i = 0;i<7;i++){
-            if(remedioIdoso.getQuantidadeDias() > i){
-                listaDias[i] = remedioIdoso.getFkRemedio().getNome();
-            }else{
-                listaDias[i] = "";
-            }
         }
     }
 
