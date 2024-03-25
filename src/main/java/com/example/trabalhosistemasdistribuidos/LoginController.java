@@ -47,10 +47,10 @@ public class LoginController {
             Login.setSenha(senha.getText());
             validacao = Login.buscar();
             if(validacao){
-                HelloApplication.escreverLog("Login: " + login.getText());
+                ClientApplication.escreverLog("Login: " + login.getText());
                 login.setText("");
                 senha.setText("");
-                HelloApplication.trocarTela("PrincipalEmpresa");
+                ClientApplication.trocarTela("PrincipalEmpresa");
             }else{
                 System.out.println("Usuário ou senha errados");
                 excecao.setText("Usuário ou senha incorreta!");
@@ -75,10 +75,10 @@ public class LoginController {
             Login.setSenha(senha.getText());
             validacao = Login.buscar();
             if(validacao){
-                HelloApplication.escreverLog("Login: " + login.getText());
+                ClientApplication.escreverLog("Login: " + login.getText());
                 login.setText("");
                 senha.setText("");
-                HelloApplication.trocarTela("PrincipalCandidato");
+                ClientApplication.trocarTela("PrincipalCandidato");
             }else{
                 System.out.println("Usuário ou senha errados");
                 excecao.setText("Usuário ou senha incorreta!");
@@ -95,14 +95,14 @@ public class LoginController {
     void cadastrarCandidato(ActionEvent event) {
         login.setText("");
         senha.setText("");
-        HelloApplication.trocarTela("CadastrarCandidato");
+        ClientApplication.trocarTela("CadastrarCandidato");
     }
 
     @FXML
     void cadastrarEmpresa(ActionEvent event) {
         login.setText("");
         senha.setText("");
-        HelloApplication.trocarTela("CadastrarEmpresa");
+        ClientApplication.trocarTela("CadastrarEmpresa");
     }
 
     @FXML

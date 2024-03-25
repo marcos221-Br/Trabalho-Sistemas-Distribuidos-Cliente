@@ -1,14 +1,10 @@
 package com.example.trabalhosistemasdistribuidos;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import com.example.trabalhosistemasdistribuidos.banco.RemedioIdosoDAO;
 import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
-import com.example.trabalhosistemasdistribuidos.modelo.Horario;
 import com.example.trabalhosistemasdistribuidos.modelo.HorarioRemedio;
-import com.example.trabalhosistemasdistribuidos.modelo.Remedio;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,12 +20,9 @@ import javafx.scene.input.KeyEvent;
 
 public class VisualizarController {
 
-    private Horario horarioM;
-    private RemedioIdosoDAO jpa;
     private ObservableList<HorarioRemedio> lista;
     private String[] listaHorario;
     private String[] listaDias;
-    private HorarioRemedio horarioRemedio;
 
     @FXML
     private ResourceBundle resources;
@@ -116,6 +109,6 @@ public class VisualizarController {
 
     @FXML
     void initialize() {
-        jpa = new RemedioIdosoDAO();
+        
     }
 }

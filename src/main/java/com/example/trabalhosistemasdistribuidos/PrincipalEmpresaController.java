@@ -49,7 +49,7 @@ public class PrincipalEmpresaController {
 
     @FXML
     void deslogar(ActionEvent event) {
-        HelloApplication.trocarTela("Login");
+        ClientApplication.trocarTela("Login");
     }
 
     //Eventos de teclado

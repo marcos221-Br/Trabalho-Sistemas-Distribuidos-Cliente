@@ -70,7 +70,7 @@ public class CadastrarCandidatoController {
 
     @FXML
     void voltarLogin(ActionEvent event) {
-        HelloApplication.trocarTela("Login");
+        ClientApplication.trocarTela("Login");
     }
 
     @FXML

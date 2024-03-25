@@ -50,7 +50,7 @@ public class CadastrarEmpresaController {
             idoso.setNome(nome.getText());
             jpa.cadastrar(idoso);
             novaExcecao("Idoso criado com sucesso!", Color.GREEN);
-            HelloApplication.escreverLog(Login.getLogin() + " cadastrou idoso " + this.nome.getText());
+            ClientApplication.escreverLog(Login.getLogin() + " cadastrou idoso " + this.nome.getText());
         }catch(CampoVazioExcecao CVE){
             System.out.println("Campos vazios!");
             novaExcecao("Campos vazios encontrados!", Color.RED);
@@ -73,7 +73,7 @@ public class CadastrarEmpresaController {
 
     @FXML
     void voltarLogin(ActionEvent event) {
-        HelloApplication.trocarTela("Login");
+        ClientApplication.trocarTela("Login");
     }
 
     @FXML

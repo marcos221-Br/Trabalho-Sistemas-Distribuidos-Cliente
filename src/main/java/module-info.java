@@ -1,4 +1,4 @@
-open module com.example.trabalhocontroleremedio {
+open module com.example.trabalhosistemasdistribuidos {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

@@ -44,7 +44,7 @@ public class PrincipalCandidatoController {
 
     @FXML
     void deslogar(ActionEvent event) {
-        HelloApplication.trocarTela("Login");
+        ClientApplication.trocarTela("Login");
     }
 
     //Eventos de teclado
