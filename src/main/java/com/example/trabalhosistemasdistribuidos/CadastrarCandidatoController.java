@@ -9,14 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-import com.example.trabalhosistemasdistribuidos.banco.UsuarioDAO;
 import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
-import com.example.trabalhosistemasdistribuidos.modelo.Usuario;
 
 public class CadastrarCandidatoController {
-
-    private Usuario usuario;
-    private UsuarioDAO jpa;
 
     @FXML
     private Hyperlink voltar;
@@ -40,18 +35,10 @@ public class CadastrarCandidatoController {
     void cadastrar(ActionEvent event) { // Cadastra usuário no banco
         desativarExcecao();
         try {
-            usuario = new Usuario();
-            usuario.setLogin(this.login.getText());
-            usuario.setNome(this.nome.getText());
-            usuario.setSenha(this.senha.getText());
-            jpa.cadastrar(usuario);
             novaExcecao("Usuário cadastrado com sucesso!", Color.GREEN);
         } catch (NumberFormatException NFE) {
             System.out.println("A mátricula deve conter apenas números");
             novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        }catch(CampoVazioExcecao CVE){
-            System.out.println("Necessário fornecer uma mátricula");
-            novaExcecao("Necessário fornecer uma mátricula!", Color.RED);
         }catch (Exception ex){
             System.out.println(ex);
         }
@@ -75,7 +62,7 @@ public class CadastrarCandidatoController {
 
     @FXML
     void initialize() {
-        jpa = new UsuarioDAO();
+
     }
 
 }

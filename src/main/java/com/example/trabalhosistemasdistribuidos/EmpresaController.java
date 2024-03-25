@@ -1,8 +1,6 @@
 package com.example.trabalhosistemasdistribuidos;
 
-import com.example.trabalhosistemasdistribuidos.banco.UsuarioDAO;
 import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
-import com.example.trabalhosistemasdistribuidos.modelo.Usuario;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 public class EmpresaController {
-
-    private Usuario usuario;
-    private UsuarioDAO jpa;
 
     @FXML
     private Button btnAlterar;
@@ -39,21 +34,10 @@ public class EmpresaController {
     void alterar(ActionEvent event) { // Altera usuário no banco
         desativarExcecao();
         try {
-            usuario = new Usuario();
-            usuario = jpa.buscar(usuario);
-            if(usuario != null){
-                usuario.setLogin(login.getText());
-                usuario.setNome(nome.getText());
-                usuario.setSenha(senha.getText());
-                jpa.editar(usuario);
-            }
             novaExcecao("Usuário alterado com sucesso!", Color.GREEN);
         } catch (NumberFormatException NFE) {
             System.out.println("A mátricula deve conter apenas números");
             novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        } catch(CampoVazioExcecao CVE){
-            System.out.println("Campo matrícula ou senha vazio!");
-            novaExcecao("Necessário fornecer uma mátricula!", Color.RED);
         } catch(Exception ex){
             System.out.println(ex);
         }
@@ -63,8 +47,6 @@ public class EmpresaController {
     void excluir(ActionEvent event) { // Exclui um usuário no banco
         desativarExcecao();
         try {
-            usuario = new Usuario();
-            jpa.excluir(usuario);
             this.login.setText("");
             this.nome.setText("");
             this.senha.setText("");
@@ -72,9 +54,6 @@ public class EmpresaController {
         } catch (NumberFormatException NFE) {
             System.out.println("A mátricula deve conter apenas números");
             novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        } catch(CampoVazioExcecao CVE){
-            System.out.println("A matricula está vazia!");
-            novaExcecao("Necessário fornecer uma mátricula!", Color.RED);
         } catch(Exception ex){
             System.out.println(ex);
         }
