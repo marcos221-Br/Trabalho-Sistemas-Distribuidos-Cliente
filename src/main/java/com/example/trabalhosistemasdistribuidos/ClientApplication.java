@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ClientApplication extends Application {
     private static Stage stage;
@@ -14,6 +15,9 @@ public class ClientApplication extends Application {
     private static Scene login;
     private static Scene cadastrarCandidado;
     private static Scene cadastrarEmpresa;
+    private static String ip;
+    //private static String porta;
+    private static SocketClient socket;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -67,8 +71,30 @@ public class ClientApplication extends Application {
         System.out.println(texto);
     }
 
+    public static String enviarSocket(String string){
+        String retorno = "";
+        try{
+            System.out.println("Enviado: " + string);
+            retorno = socket.enviarString(string);
+            System.out.println("Recebido: " + retorno);
+        }catch(IOException IOE){
+            System.err.println(IOE);
+            System.exit(1);
+        }
+        return retorno;
+    }
+
     public static void main(String[] args) {
         //Inicia o programa
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o IP:");
+        ip = input.nextLine();
+        //System.out.println("Digite a porta:");
+        //porta = input.nextLine();
+        input.close();
+        socket = new SocketClient(ip,"22222");
+        socket.conectarSocket();
         launch();
+        socket.fecharSocket();
     }
 }

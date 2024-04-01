@@ -9,8 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
-
 public class CadastrarCandidatoController {
 
     @FXML

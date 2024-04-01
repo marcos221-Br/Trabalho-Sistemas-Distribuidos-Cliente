@@ -1,6 +1,5 @@
 package com.example.trabalhosistemasdistribuidos;
 
-import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
 
 import javafx.event.ActionEvent;
@@ -39,27 +38,18 @@ public class LoginController {
     void entrarEmpresa(ActionEvent event) { // Validação de login
         boolean validacao;
         excecao.setVisible(false);
-        try{
-            if(login.getText().equals("") || senha.getText().equals("")){
-                throw new CampoVazioExcecao();
-            }
-            Login.setLogin(login.getText());
-            Login.setSenha(senha.getText());
-            validacao = Login.buscar();
-            if(validacao){
-                ClientApplication.escreverLog("Login: " + login.getText());
-                login.setText("");
-                senha.setText("");
-                ClientApplication.trocarTela("PrincipalEmpresa");
-            }else{
-                System.out.println("Usuário ou senha errados");
-                excecao.setText("Usuário ou senha incorreta!");
-                excecao.setVisible(true);
-            }
-        }catch(CampoVazioExcecao CVE){//CampoVazioExcecao CVE){
-            excecao.setText("Campo Login ou Senha vazio!");
+        Login.setLogin(login.getText());
+        Login.setSenha(senha.getText());
+        validacao = Login.buscar();
+        if(validacao){
+            ClientApplication.escreverLog("Login: " + login.getText());
+            login.setText("");
+            senha.setText("");
+            ClientApplication.trocarTela("PrincipalEmpresa");
+        }else{
+            System.out.println("Usuário ou senha errados");
+            excecao.setText("Usuário ou senha incorreta!");
             excecao.setVisible(true);
-            System.out.println(CVE);
         }
     }
 
@@ -67,27 +57,18 @@ public class LoginController {
     void entrarCandidato(ActionEvent event) {
         boolean validacao;
         excecao.setVisible(false);
-        try{
-            if(login.getText().equals("") || senha.getText().equals("")){
-                throw new CampoVazioExcecao();
-            }
-            Login.setLogin(login.getText());
-            Login.setSenha(senha.getText());
-            validacao = Login.buscar();
-            if(validacao){
-                ClientApplication.escreverLog("Login: " + login.getText());
-                login.setText("");
-                senha.setText("");
-                ClientApplication.trocarTela("PrincipalCandidato");
-            }else{
-                System.out.println("Usuário ou senha errados");
-                excecao.setText("Usuário ou senha incorreta!");
-                excecao.setVisible(true);
-            }
-        }catch(CampoVazioExcecao CVE){//CampoVazioExcecao CVE){
-            excecao.setText("Campo Login ou Senha vazio!");
+        Login.setLogin(login.getText());
+        Login.setSenha(senha.getText());
+        validacao = Login.buscar();
+        if(validacao){
+            ClientApplication.escreverLog("Login: " + login.getText());
+            login.setText("");
+            senha.setText("");
+            ClientApplication.trocarTela("PrincipalCandidato");
+        }else{
+            System.out.println("Usuário ou senha errados");
+            excecao.setText("Usuário ou senha incorreta!");
             excecao.setVisible(true);
-            System.out.println(CVE);
         }
     }
 

@@ -1,7 +1,5 @@
 package com.example.trabalhosistemasdistribuidos;
 
-import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

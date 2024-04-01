@@ -6,7 +6,7 @@ public class Login {
 
     public static boolean buscar(){ // Busca o usuário no banco para verificação
         try{
-            return false;
+            return true;
         }catch(NullPointerException NPE){
             return false;
         }

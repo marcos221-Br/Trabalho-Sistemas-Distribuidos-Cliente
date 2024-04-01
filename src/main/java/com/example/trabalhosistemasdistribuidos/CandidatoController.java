@@ -1,6 +1,5 @@
 package com.example.trabalhosistemasdistribuidos;
 
-import com.example.trabalhosistemasdistribuidos.excecao.CampoVazioExcecao;
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
 
 import javafx.event.ActionEvent;
