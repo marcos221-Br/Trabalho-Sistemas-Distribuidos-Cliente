@@ -27,6 +27,18 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin></TextField>
+            <Label styleClass="label-modern" text="CNPJ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="cnpj" promptText="CNPJ da empresa" styleClass="text-field-modern" />
             <Label styleClass="label-modern" text="Senha">
                <padding>
                   <Insets left="5.0" />
@@ -43,7 +55,7 @@
                   <Insets />
                </VBox.margin>
             </PasswordField>
-            <Label styleClass="label-modern" text="Nome">
+            <Label styleClass="label-modern" text="Razão Social">
                <font>
                   <Font size="18.0" />
                </font>
@@ -51,7 +63,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="nome" promptText="Nome da empresa" styleClass="text-field-modern">
+            <TextField fx:id="nome" promptText="Razaão Social da empresa" styleClass="text-field-modern">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -64,13 +76,13 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField promptText="Ramo da empresa" styleClass="text-field-modern" />
+            <TextField fx:id="ramo" promptText="Ramo da empresa" styleClass="text-field-modern" />
             <Label styleClass="label-modern" text="Descrição">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Descrição da empresa" styleClass="text-field-modern" />
+            <TextArea fx:id="descricao" prefHeight="200.0" prefWidth="200.0" promptText="Descrição da empresa" styleClass="text-field-modern" />
             <Label fx:id="excecao" text="Label" visible="false" />
          </children>
          <BorderPane.margin>

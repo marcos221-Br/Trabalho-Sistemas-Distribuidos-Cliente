@@ -16,10 +16,7 @@ public class Candidato {
     }
 
     public Candidato(String email){
-        this.email = email;
-        this.nome = "";
-        this.senha = "";
-        System.out.println(this.email);
+        this(email, "", "");
     }
 
     public void setNome(String nome){
@@ -50,7 +47,7 @@ public class Candidato {
         String[] funcoes = {"email"};
         String[] valores = {this.email};
         String jsonRecebido;
-        json = new ToJson("buscarCandidato",funcoes,valores);
+        json = new ToJson("visualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(jsonRecebido);
         if(json.getFuncao("status").equals("201")){

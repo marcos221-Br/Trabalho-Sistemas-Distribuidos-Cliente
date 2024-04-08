@@ -2,18 +2,23 @@ package com.example.trabalhosistemasdistribuidos;
 
 import java.util.ResourceBundle;
 
-import com.example.trabalhosistemasdistribuidos.modelo.Login;
+import com.example.trabalhosistemasdistribuidos.modelo.Candidato;
+import com.example.trabalhosistemasdistribuidos.modelo.Empresa;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 public class CadastrarEmpresaController {
 
+    private Empresa empresa;
+    
     @FXML
     private Hyperlink voltar;
 
@@ -24,20 +29,34 @@ public class CadastrarEmpresaController {
     private Button cadastrar;
 
     @FXML
-    private TextField nome;
+    private TextField cnpj;
+
+    @FXML
+    private TextArea descricao;
+
+    @FXML
+    private TextField email;
+
+    @FXML
+    private TextField ramo;
+
+    @FXML
+    private TextField razaoSocial;
+
+    @FXML
+    private PasswordField senha;
 
     @FXML
     private Label excecao;
 
     @FXML
-    void cadastrar(ActionEvent event) { // Cadastra o Idoso
+    void cadastrar(ActionEvent event) { // Cadastra empresa no banco
         desativarExcecao();
-        try{
-            int totalIdoso = 0;
-            novaExcecao("Idoso criado com sucesso!", Color.GREEN);
-        }catch(Exception ex){
-            System.out.println(ex);
-            novaExcecao("Impossível cadastrar idoso!", Color.RED);
+        empresa = new Empresa(email.getText(),razaoSocial.getText(),ramo.getText(),descricao.getText(),senha.getText(),Integer.parseInt(cnpj.getText()));
+        if(empresa.cadastrar()){
+            novaExcecao("Candidato cadastrado com sucesso!", Color.GREEN);
+        }else{
+            novaExcecao("Impossível cadastrar candidato!", Color.RED);
         }
     }
 

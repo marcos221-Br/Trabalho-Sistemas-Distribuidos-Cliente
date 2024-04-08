@@ -19,7 +19,7 @@ public class ClientApplication extends Application {
     private static SocketClient socket;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(@SuppressWarnings("exports") Stage primaryStage) throws IOException {
         stage = primaryStage;
         primaryStage.setTitle("Portal de Vagas");
 
