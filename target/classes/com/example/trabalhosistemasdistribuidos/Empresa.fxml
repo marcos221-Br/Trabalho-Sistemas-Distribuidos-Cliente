@@ -87,6 +87,11 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="92.0" prefWidth="900.0" spacing="25.0" stylesheets="@../../../estilos/LabelTextField.css">
          <children>
+            <Button fx:id="btnBuscar" alignment="CENTER" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="150.0" styleClass="button-buscar" text="BUSCAR" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
             <Button fx:id="btnAlterar" alignment="CENTER" mnemonicParsing="false" onAction="#alterar" prefHeight="50.0" prefWidth="150.0" styleClass="button-alterar" text="ALTERAR" textAlignment="CENTER">
                <opaqueInsets>
                   <Insets />

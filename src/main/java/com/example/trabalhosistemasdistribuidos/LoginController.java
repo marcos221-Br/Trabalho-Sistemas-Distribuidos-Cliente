@@ -40,9 +40,8 @@ public class LoginController {
         excecao.setVisible(false);
         Login.setLogin(login.getText());
         Login.setSenha(senha.getText());
-        validacao = Login.buscar();
+        validacao = Login.buscar("loginEmpresa");
         if(validacao){
-            ClientApplication.escreverLog("Login: " + login.getText());
             login.setText("");
             senha.setText("");
             ClientApplication.trocarTela("PrincipalEmpresa");
@@ -59,9 +58,8 @@ public class LoginController {
         excecao.setVisible(false);
         Login.setLogin(login.getText());
         Login.setSenha(senha.getText());
-        validacao = Login.buscar();
+        validacao = Login.buscar("loginCandidato");
         if(validacao){
-            ClientApplication.escreverLog("Login: " + login.getText());
             login.setText("");
             senha.setText("");
             ClientApplication.trocarTela("PrincipalCandidato");

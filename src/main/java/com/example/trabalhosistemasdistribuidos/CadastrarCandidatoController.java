@@ -1,5 +1,7 @@
 package com.example.trabalhosistemasdistribuidos;
 
+import com.example.trabalhosistemasdistribuidos.modelo.Candidato;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +13,8 @@ import javafx.scene.paint.Color;
 
 public class CadastrarCandidatoController {
 
+    private Candidato candidato;
+    
     @FXML
     private Hyperlink voltar;
 
@@ -32,13 +36,11 @@ public class CadastrarCandidatoController {
     @FXML
     void cadastrar(ActionEvent event) { // Cadastra usuário no banco
         desativarExcecao();
-        try {
-            novaExcecao("Usuário cadastrado com sucesso!", Color.GREEN);
-        } catch (NumberFormatException NFE) {
-            System.out.println("A mátricula deve conter apenas números");
-            novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        }catch (Exception ex){
-            System.out.println(ex);
+        candidato = new Candidato(login.getText(), nome.getText(), senha.getText());
+        if(candidato.cadastrar()){
+            novaExcecao("Candidato cadastrado com sucesso!", Color.GREEN);
+        }else{
+            novaExcecao("Impossível cadastrar candidato!", Color.RED);
         }
     }
 

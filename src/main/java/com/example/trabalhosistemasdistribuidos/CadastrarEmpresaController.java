@@ -35,7 +35,6 @@ public class CadastrarEmpresaController {
         try{
             int totalIdoso = 0;
             novaExcecao("Idoso criado com sucesso!", Color.GREEN);
-            ClientApplication.escreverLog(Login.getLogin() + " cadastrou idoso " + this.nome.getText());
         }catch(Exception ex){
             System.out.println(ex);
             novaExcecao("Impossível cadastrar idoso!", Color.RED);

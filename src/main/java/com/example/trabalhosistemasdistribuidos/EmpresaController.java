@@ -17,6 +17,9 @@ public class EmpresaController {
     private Button btnExcluir;
 
     @FXML
+    private Button btnBuscar;
+
+    @FXML
     private TextField login;
 
     @FXML
@@ -55,6 +58,11 @@ public class EmpresaController {
         } catch(Exception ex){
             System.out.println(ex);
         }
+    }
+
+    @FXML
+    void buscar(ActionEvent event) {
+
     }
 
     private void desativarExcecao(){

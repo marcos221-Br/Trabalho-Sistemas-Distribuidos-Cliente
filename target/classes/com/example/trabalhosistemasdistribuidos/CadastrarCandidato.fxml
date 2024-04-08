@@ -47,6 +47,9 @@
                <opaqueInsets>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </opaqueInsets>
+               <children>
+                  <Label fx:id="excecao" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" visible="false" />
+               </children>
             </HBox>
             </children>
          <BorderPane.margin>

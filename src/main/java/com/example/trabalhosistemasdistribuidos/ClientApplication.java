@@ -16,7 +16,6 @@ public class ClientApplication extends Application {
     private static Scene cadastrarCandidado;
     private static Scene cadastrarEmpresa;
     private static String ip;
-    //private static String porta;
     private static SocketClient socket;
 
     @Override
@@ -67,10 +66,6 @@ public class ClientApplication extends Application {
         }
     }
 
-    public static void escreverLog(String texto){ // Realiza a escrita no log
-        System.out.println(texto);
-    }
-
     public static String enviarSocket(String string){
         String retorno = "";
         try{
@@ -89,8 +84,6 @@ public class ClientApplication extends Application {
         Scanner input = new Scanner(System.in);
         System.out.println("Digite o IP:");
         ip = input.nextLine();
-        //System.out.println("Digite a porta:");
-        //porta = input.nextLine();
         input.close();
         socket = new SocketClient(ip,"22222");
         socket.conectarSocket();

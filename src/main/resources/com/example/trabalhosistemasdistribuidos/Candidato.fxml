@@ -59,7 +59,7 @@
     <bottom>
         <HBox alignment="CENTER" prefHeight="92.0" prefWidth="900.0" spacing="25.0" stylesheets="@../../../estilos/LabelTextField.css" BorderPane.alignment="CENTER">
             <children>
-            <Button fx:id="dados" mnemonicParsing="false" onAction="#carregar" styleClass="button-buscar" text="BUSCAR" textFill="WHITE">
+            <Button fx:id="dados" mnemonicParsing="false" onAction="#buscar" styleClass="button-buscar" text="BUSCAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

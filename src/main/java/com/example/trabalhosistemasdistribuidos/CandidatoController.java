@@ -1,5 +1,6 @@
 package com.example.trabalhosistemasdistribuidos;
 
+import com.example.trabalhosistemasdistribuidos.modelo.Candidato;
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
 
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.paint.Color;
 
 public class CandidatoController {
 
+    private Candidato candidato;
+    
     @FXML
     private Button btnAlterar;
 
@@ -36,35 +39,41 @@ public class CandidatoController {
     @FXML
     void alterar(ActionEvent event) { // Altera usuário no banco
         desativarExcecao();
-        try {
-            novaExcecao("Usuário alterado com sucesso!", Color.GREEN);
-        } catch (NumberFormatException NFE) {
-            System.out.println("A mátricula deve conter apenas números");
-            novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        } catch(Exception ex){
-            System.out.println(ex);
+        candidato = new Candidato(this.login.getText(),this.nome.getText(),this.senha.getText());
+        if(candidato.atualizar()){
+            novaExcecao("Usuário atualizado com sucesso!", Color.GREEN);
+        }else{
+            novaExcecao("Usuário não encontrado!", Color.RED);
         }
     }
 
     @FXML
     void excluir(ActionEvent event) { // Exclui um usuário no banco
         desativarExcecao();
-        try {
+        candidato = new Candidato(Login.getLogin());
+        if(candidato.apagar()){
             this.login.setText("");
             this.nome.setText("");
             this.senha.setText("");
             novaExcecao("Usuário excluido com sucesso!", Color.GREEN);
-        } catch (NumberFormatException NFE) {
-            System.out.println("A mátricula deve conter apenas números");
-            novaExcecao("A mátricula deve conter apenas números!", Color.RED);
-        } catch(Exception ex){
-            System.out.println(ex);
+        }else{
+            novaExcecao("Usuário não encontrado!", Color.RED);
         }
+        
+        
     }
 
     @FXML
-    void carregar(ActionEvent event) {
-        login.setText(Login.getLogin());
+    void buscar(ActionEvent event) {
+        desativarExcecao();
+        candidato = new Candidato(Login.getLogin());
+        if(candidato.buscar()){
+            login.setText(candidato.getEmail());
+            nome.setText(candidato.getNome());
+            senha.setText(candidato.getSenha());
+        }else{
+            novaExcecao("Usuário não encontrado", Color.RED);
+        }
     }
 
     private void desativarExcecao(){

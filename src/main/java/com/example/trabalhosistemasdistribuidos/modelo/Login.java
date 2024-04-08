@@ -1,13 +1,25 @@
 package com.example.trabalhosistemasdistribuidos.modelo;
 
+import com.example.trabalhosistemasdistribuidos.ClientApplication;
+import com.example.trabalhosistemasdistribuidos.ToJson;
+
 public class Login {
     private static String login;
     private static String senha;
+    private static String token;
+    private static ToJson json;
 
-    public static boolean buscar(){ // Busca o usuário no banco para verificação
-        try{
+    public static boolean buscar(String tipo){ // Busca o usuário no banco para verificação
+        String[] funcoes = {"email","senha"};
+        String[] valores = {login,senha};
+        String jsonRecebido;
+        json = new ToJson(tipo, funcoes, valores);
+        jsonRecebido = ClientApplication.enviarSocket(json.getJson());
+        json.setJson(jsonRecebido);
+        if(json.getFuncao("status").equals("200")){
+            Login.token = json.getFuncao("token");
             return true;
-        }catch(NullPointerException NPE){
+        }else{
             return false;
         }
     }
@@ -22,5 +34,9 @@ public class Login {
 
     public static String getLogin(){
         return Login.login;
+    }
+
+    public static String getToken(){
+        return Login.token;
     }
 }

@@ -3,6 +3,8 @@ package com.example.trabalhosistemasdistribuidos;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.trabalhosistemasdistribuidos.modelo.Login;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +46,7 @@ public class PrincipalCandidatoController {
 
     @FXML
     void deslogar(ActionEvent event) {
+        ClientApplication.enviarSocket("\"operacao\":\"logout\",\"token\":\"" + Login.getToken() + "\"");
         ClientApplication.trocarTela("Login");
     }
 
