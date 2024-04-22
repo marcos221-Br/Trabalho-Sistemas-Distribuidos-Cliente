@@ -56,6 +56,7 @@ public class CandidatoController {
             this.nome.setText("");
             this.senha.setText("");
             novaExcecao("Usuário excluido com sucesso!", Color.GREEN);
+            ClientApplication.trocarTela("Login");
         }else{
             novaExcecao("Usuário não encontrado!", Color.RED);
         }

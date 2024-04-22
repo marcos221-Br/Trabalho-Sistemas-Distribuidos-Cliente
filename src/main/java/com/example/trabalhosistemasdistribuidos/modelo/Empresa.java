@@ -1,5 +1,7 @@
 package com.example.trabalhosistemasdistribuidos.modelo;
 
+import org.json.JSONObject;
+
 import com.example.trabalhosistemasdistribuidos.ClientApplication;
 import com.example.trabalhosistemasdistribuidos.ToJson;
 
@@ -80,7 +82,7 @@ public class Empresa {
         String jsonRecebido;
         json = new ToJson("visualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.senha = json.getFuncao("senha");
             this.cnpj = Integer.parseInt(json.getFuncao("cnpj"));
@@ -99,7 +101,7 @@ public class Empresa {
         String jsonRecebido;
         json = new ToJson("apagarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.senha = "";
             this.cnpj = 0;
@@ -118,7 +120,7 @@ public class Empresa {
         String jsonRecebido;
         json = new ToJson("atualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             return true;
         }else{
@@ -132,7 +134,7 @@ public class Empresa {
         String jsonRecebido;
         json = new ToJson("cadastrarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             return true;
         }else{

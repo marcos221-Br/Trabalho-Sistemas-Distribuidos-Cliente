@@ -18,6 +18,7 @@ public class PrincipalEmpresaController {
     private Parent fxmlEmpresa = null;
     private Parent fxmlVaga = null;
     private Parent fxmlVisualizar = null;
+    private ToJson json;
 
     @FXML
     private ResourceBundle resources;
@@ -51,7 +52,10 @@ public class PrincipalEmpresaController {
 
     @FXML
     void deslogar(ActionEvent event) {
-        ClientApplication.enviarSocket("\"operacao\":\"logout\",\"token\":\"" + Login.getToken() + "\"");
+        String[] funcoes = {"token"};
+        String[] valores = {Login.getToken()};
+        json = new ToJson("logout", funcoes, valores);
+        ClientApplication.enviarSocket(json.getJson());
         ClientApplication.trocarTela("Login");
     }
 

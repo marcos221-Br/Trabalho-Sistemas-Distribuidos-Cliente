@@ -1,5 +1,7 @@
 package com.example.trabalhosistemasdistribuidos.modelo;
 
+import org.json.JSONObject;
+
 import com.example.trabalhosistemasdistribuidos.ClientApplication;
 import com.example.trabalhosistemasdistribuidos.ToJson;
 
@@ -15,7 +17,7 @@ public class Login {
         String jsonRecebido;
         json = new ToJson(tipo, funcoes, valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("200")){
             Login.token = json.getFuncao("token");
             return true;

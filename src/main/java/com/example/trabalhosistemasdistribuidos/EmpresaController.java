@@ -1,6 +1,5 @@
 package com.example.trabalhosistemasdistribuidos;
 
-import com.example.trabalhosistemasdistribuidos.modelo.Candidato;
 import com.example.trabalhosistemasdistribuidos.modelo.Empresa;
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
 
@@ -70,6 +69,7 @@ public class EmpresaController {
             this.ramo.setText("");
             this.cnpj.setText("");
             novaExcecao("Usuário excluido com sucesso!", Color.GREEN);
+            ClientApplication.trocarTela("Login");
         }else{
             novaExcecao("Usuário não encontrado!", Color.RED);
         }

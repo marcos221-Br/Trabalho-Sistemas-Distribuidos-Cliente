@@ -18,6 +18,7 @@ public class PrincipalCandidatoController {
     private Parent fxmlCandidato = null;
     private Parent fxmlCompetencia = null;
     private Parent fxmlVisualizar = null;
+    private ToJson json;
 
     @FXML
     private ResourceBundle resources;
@@ -46,7 +47,10 @@ public class PrincipalCandidatoController {
 
     @FXML
     void deslogar(ActionEvent event) {
-        ClientApplication.enviarSocket("\"operacao\":\"logout\",\"token\":\"" + Login.getToken() + "\"");
+        String[] funcoes = {"token"};
+        String[] valores = {Login.getToken()};
+        json = new ToJson("logout", funcoes, valores);
+        ClientApplication.enviarSocket(json.getJson());
         ClientApplication.trocarTela("Login");
     }
 

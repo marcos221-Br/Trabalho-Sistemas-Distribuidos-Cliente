@@ -1,5 +1,7 @@
 package com.example.trabalhosistemasdistribuidos.modelo;
 
+import org.json.JSONObject;
+
 import com.example.trabalhosistemasdistribuidos.ClientApplication;
 import com.example.trabalhosistemasdistribuidos.ToJson;
 
@@ -49,7 +51,7 @@ public class Candidato {
         String jsonRecebido;
         json = new ToJson("visualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.nome = json.getFuncao("nome");
             this.senha = json.getFuncao("senha");
@@ -65,7 +67,7 @@ public class Candidato {
         String jsonRecebido;
         json = new ToJson("apagarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.nome = "";
             this.senha = "";
@@ -81,7 +83,7 @@ public class Candidato {
         String jsonRecebido;
         json = new ToJson("atualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             return true;
         }else{
@@ -95,7 +97,7 @@ public class Candidato {
         String jsonRecebido;
         json = new ToJson("cadastrarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
-        json.setJson(jsonRecebido);
+        json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             return true;
         }else{
