@@ -40,7 +40,7 @@ public class ToJson {
         this.valores = new String[json.length()];
         for (String string : json.keySet()) {
             this.funcoes[i] = string;
-            this.valores[i] = json.getString(string);
+            this.valores[i] = json.get(string)+"";
             i++;
         }
     }

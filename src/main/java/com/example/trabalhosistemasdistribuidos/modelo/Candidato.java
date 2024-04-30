@@ -52,7 +52,7 @@ public class Candidato {
         json = new ToJson("visualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             this.nome = json.getFuncao("nome");
             this.senha = json.getFuncao("senha");
             return true;
@@ -68,7 +68,7 @@ public class Candidato {
         json = new ToJson("apagarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             this.nome = "";
             this.senha = "";
             return true;
@@ -84,7 +84,7 @@ public class Candidato {
         json = new ToJson("atualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             return true;
         }else{
             return false;
@@ -98,7 +98,7 @@ public class Candidato {
         json = new ToJson("cadastrarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             return true;
         }else{
             return false;
