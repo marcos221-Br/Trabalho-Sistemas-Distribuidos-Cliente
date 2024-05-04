@@ -2,7 +2,6 @@ package com.example.trabalhosistemasdistribuidos;
 
 import java.util.ResourceBundle;
 
-import com.example.trabalhosistemasdistribuidos.modelo.Candidato;
 import com.example.trabalhosistemasdistribuidos.modelo.Empresa;
 
 import javafx.event.ActionEvent;

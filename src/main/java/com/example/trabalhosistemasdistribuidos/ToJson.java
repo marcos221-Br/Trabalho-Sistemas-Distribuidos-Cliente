@@ -48,7 +48,7 @@ public class ToJson {
     public String getFuncao(String funcao){
         for (int i = 0; i < this.funcoes.length; i++) {
             if(this.funcoes[i].equals(funcao)){
-                return this.valores[i];
+                return this.valores[i]+"";
             }
         }
         return null;
