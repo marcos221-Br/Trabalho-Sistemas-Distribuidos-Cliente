@@ -26,14 +26,14 @@ public class ClientApplication extends Application {
         Parent fxmlLogin = FXMLLoader.load(getClass().getResource("Login.fxml"));
         login = new Scene(fxmlLogin);
 
-        Parent fxmlPrincipalEmpresa = FXMLLoader.load(getClass().getResource("PrincipalEmpresa.fxml"));
-        principalEmpresa = new Scene(fxmlPrincipalEmpresa);
+        //Parent fxmlPrincipalEmpresa = FXMLLoader.load(getClass().getResource("PrincipalEmpresa.fxml"));
+        //principalEmpresa = new Scene(fxmlPrincipalEmpresa);
 
         Parent fxmlPrincipalCandidato = FXMLLoader.load(getClass().getResource("PrincipalCandidato.fxml"));
         principalCandidato = new Scene(fxmlPrincipalCandidato);
 
-        Parent fxmlEmpresa = FXMLLoader.load(getClass().getResource("CadastrarEmpresa.fxml"));
-        cadastrarEmpresa = new Scene(fxmlEmpresa);
+        //Parent fxmlEmpresa = FXMLLoader.load(getClass().getResource("CadastrarEmpresa.fxml"));
+        //cadastrarEmpresa = new Scene(fxmlEmpresa);
 
         Parent fxmlCandidato = FXMLLoader.load(getClass().getResource("CadastrarCandidato.fxml"));
         cadastrarCandidado = new Scene(fxmlCandidato);
