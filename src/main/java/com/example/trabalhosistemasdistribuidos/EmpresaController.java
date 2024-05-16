@@ -49,7 +49,7 @@ public class EmpresaController {
     @FXML
     void alterar(ActionEvent event) { // Altera usuário no banco
         desativarExcecao();
-        empresa = new Empresa(this.login.getText(),this.nome.getText(), this.ramo.getText(),this.descricao.getText(),this.senha.getText(),Integer.parseInt(this.cnpj.getText()));
+        empresa = new Empresa(this.login.getText(),this.nome.getText(), this.ramo.getText(),this.descricao.getText(),this.senha.getText(),this.cnpj.getText());
         if(empresa.atualizar()){
             novaExcecao("Usuário atualizado com sucesso!", Color.GREEN);
         }else{

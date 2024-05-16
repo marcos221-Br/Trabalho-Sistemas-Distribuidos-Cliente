@@ -51,7 +51,7 @@ public class CadastrarEmpresaController {
     @FXML
     void cadastrar(ActionEvent event) { // Cadastra empresa no banco
         desativarExcecao();
-        empresa = new Empresa(email.getText(),razaoSocial.getText(),ramo.getText(),descricao.getText(),senha.getText(),Integer.parseInt(cnpj.getText()));
+        empresa = new Empresa(email.getText(),razaoSocial.getText(),ramo.getText(),descricao.getText(),senha.getText(),cnpj.getText());
         if(empresa.cadastrar()){
             novaExcecao("Candidato cadastrado com sucesso!", Color.GREEN);
         }else{

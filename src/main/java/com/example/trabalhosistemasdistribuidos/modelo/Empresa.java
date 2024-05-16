@@ -11,10 +11,10 @@ public class Empresa {
     private String descricao;
     private String email;
     private String senha;
-    private int cnpj;
+    private String cnpj;
     private ToJson json;
 
-    public Empresa(String email, String razaoSocial, String ramo, String descricao, String senha, int cnpj){
+    public Empresa(String email, String razaoSocial, String ramo, String descricao, String senha, String cnpj){
         this.email = email;
         this.senha = senha;
         this.razaoSocial = razaoSocial;
@@ -25,7 +25,7 @@ public class Empresa {
     }
 
     public Empresa(String email){
-        this(email, "", "", "", "", 0);
+        this(email, "", "", "", "", "");
     }
 
     public String getRazaoSocial() {
@@ -68,11 +68,11 @@ public class Empresa {
         this.senha = senha;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return this.cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -85,7 +85,7 @@ public class Empresa {
         json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.senha = json.getFuncao("senha");
-            this.cnpj = Integer.parseInt(json.getFuncao("cnpj"));
+            this.cnpj = json.getFuncao("cnpj");
             this.descricao = json.getFuncao("descricao");
             this.ramo = json.getFuncao("ramo");
             this.razaoSocial = json.getFuncao("razaoSocial");
@@ -104,7 +104,7 @@ public class Empresa {
         json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
             this.senha = "";
-            this.cnpj = 0;
+            this.cnpj = "";
             this.descricao = "";
             this.ramo = "";
             this.razaoSocial = "";
