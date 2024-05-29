@@ -53,9 +53,9 @@ public class CadastrarEmpresaController {
         desativarExcecao();
         empresa = new Empresa(email.getText(),razaoSocial.getText(),ramo.getText(),descricao.getText(),senha.getText(),cnpj.getText());
         if(empresa.cadastrar()){
-            novaExcecao("Candidato cadastrado com sucesso!", Color.GREEN);
+            novaExcecao("Empresa cadastrado com sucesso!", Color.GREEN);
         }else{
-            novaExcecao("Impossível cadastrar candidato!", Color.RED);
+            novaExcecao("Impossível cadastrar empresa!", Color.RED);
         }
     }
 

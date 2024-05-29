@@ -129,7 +129,7 @@ public class Empresa {
     }
 
     public boolean cadastrar(){
-        String[] funcoes = {"razaoSocial","email","cnpj","senha","descrição","ramo"};
+        String[] funcoes = {"razaoSocial","email","cnpj","senha","descricao","ramo"};
         String[] valores = {this.razaoSocial,this.email,this.cnpj + "",this.senha,this.descricao,this.ramo};
         String jsonRecebido;
         json = new ToJson("cadastrarEmpresa",funcoes,valores);
