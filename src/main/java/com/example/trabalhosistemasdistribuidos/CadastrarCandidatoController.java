@@ -39,6 +39,7 @@ public class CadastrarCandidatoController {
         candidato = new Candidato(login.getText(), nome.getText(), senha.getText());
         if(candidato.cadastrar()){
             novaExcecao("Candidato cadastrado com sucesso!", Color.GREEN);
+            ClientApplication.trocarTela("PrincipalCandidato");
         }else{
             novaExcecao("Impossível cadastrar candidato!", Color.RED);
         }

@@ -46,8 +46,8 @@ public class Candidato {
     }
 
     public boolean buscar(){
-        String[] funcoes = {"email"};
-        String[] valores = {this.email};
+        String[] funcoes = {"email","token"};
+        String[] valores = {this.email,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("visualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -62,8 +62,8 @@ public class Candidato {
     }
 
     public boolean apagar(){
-        String[] funcoes = {"email"};
-        String[] valores = {this.email};
+        String[] funcoes = {"email","token"};
+        String[] valores = {this.email,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("apagarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -78,8 +78,8 @@ public class Candidato {
     }
 
     public boolean atualizar(){
-        String[] funcoes = {"email","nome","senha"};
-        String[] valores = {this.email,this.nome,this.senha};
+        String[] funcoes = {"email","nome","senha","token"};
+        String[] valores = {this.email,this.nome,this.senha,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("atualizarCandidato",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -99,6 +99,9 @@ public class Candidato {
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         if((json.getFuncao("status")+"").equals("201")){
+            Login.setLogin(this.email);
+            Login.setSenha(this.senha);
+            Login.setToken(json.getFuncao("token"));
             return true;
         }else{
             return false;

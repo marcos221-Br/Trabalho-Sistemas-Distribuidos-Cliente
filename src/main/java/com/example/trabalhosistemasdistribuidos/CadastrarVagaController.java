@@ -2,13 +2,26 @@ package com.example.trabalhosistemasdistribuidos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.trabalhosistemasdistribuidos.enums.CompetenciaEnum;
+import com.example.trabalhosistemasdistribuidos.modelo.Competencia;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CadastrarVagaController {
+
+    private ObservableList<String> listaCompetencias;
+    private ObservableList<String> listaEstados;
+    private ObservableList<Competencia> competencias;
 
     @FXML
     private ResourceBundle resources;
@@ -17,7 +30,13 @@ public class CadastrarVagaController {
     private URL location;
 
     @FXML
+    private Button btnAdicionar;
+
+    @FXML
     private Button btnAlterar;
+
+    @FXML
+    private Button btnBuscar;
 
     @FXML
     private Button btnCadastrar;
@@ -26,19 +45,50 @@ public class CadastrarVagaController {
     private Button btnExcluir;
 
     @FXML
-    private TextField categoria;
+    private TableColumn<Competencia, String> columnCompetencia;
 
     @FXML
-    private Label excecao;
+    private ComboBox<String> competenciasVaga;
 
     @FXML
-    private TextField nome;
+    private TextField descricaoVaga;
 
     @FXML
-    private TextField nomeGenerico;
+    private ComboBox<String> estadoVaga;
+
+    @FXML
+    private TextField faixaSalarialVaga;
+
+    @FXML
+    private TextField idVaga;
+
+    @FXML
+    private TextField nomeVaga;
+
+    @FXML
+    private TableView<Competencia> tabela;
+
+    @FXML
+    private Button btnRemoverCompetencia;
+
+    @FXML
+    void removerCompetencia(ActionEvent event) {
+        tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    void adicionar(ActionEvent event) {
+        competencias.add(new Competencia(competenciasVaga.getValue()));
+        tabela.setItems(competencias);
+    }
 
     @FXML
     void alterar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void buscar(ActionEvent event) {
 
     }
 
@@ -54,14 +104,18 @@ public class CadastrarVagaController {
 
     @FXML
     void initialize() {
-        assert btnAlterar != null : "fx:id=\"btnAlterar\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert btnCadastrar != null : "fx:id=\"btnCadastrar\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert btnExcluir != null : "fx:id=\"btnExcluir\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert categoria != null : "fx:id=\"categoria\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert excecao != null : "fx:id=\"excecao\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert nome != null : "fx:id=\"nome\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
-        assert nomeGenerico != null : "fx:id=\"nomeGenerico\" was not injected: check your FXML file 'CadastrarVaga.fxml'.";
+        this.listaCompetencias = FXCollections.observableArrayList();
+        for (CompetenciaEnum competencias : CompetenciaEnum.values()) {
+            this.listaCompetencias.add(competencias.getCompetencia());
+        }
+        competenciasVaga.setItems(this.listaCompetencias);
 
+        this.listaEstados = FXCollections.observableArrayList("Disponível","Divulgável");
+        estadoVaga.setItems(listaEstados);
+
+        competencias = FXCollections.observableArrayList();
+
+        columnCompetencia.setCellValueFactory(new PropertyValueFactory<>("competencia"));
     }
 
 }

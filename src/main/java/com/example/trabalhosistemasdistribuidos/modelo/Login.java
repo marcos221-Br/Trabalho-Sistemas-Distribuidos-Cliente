@@ -34,6 +34,10 @@ public class Login {
         Login.senha = senha;
     }
 
+    public static void setToken(String token){
+        Login.token = token;
+    }
+
     public static String getLogin(){
         return Login.login;
     }

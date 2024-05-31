@@ -77,8 +77,8 @@ public class Empresa {
     }
 
     public boolean buscar(){
-        String[] funcoes = {"email"};
-        String[] valores = {this.email};
+        String[] funcoes = {"email","token"};
+        String[] valores = {this.email,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("visualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -96,8 +96,8 @@ public class Empresa {
     }
 
     public boolean apagar(){
-        String[] funcoes = {"email"};
-        String[] valores = {this.email};
+        String[] funcoes = {"email","token"};
+        String[] valores = {this.email,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("apagarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -115,8 +115,8 @@ public class Empresa {
     }
 
     public boolean atualizar(){
-        String[] funcoes = {"email","razaoSocial","cnpj","senha","descricao","ramo"};
-        String[] valores = {this.email,this.razaoSocial,this.cnpj + "",this.senha,this.descricao,this.ramo};
+        String[] funcoes = {"email","razaoSocial","cnpj","senha","descricao","ramo","token"};
+        String[] valores = {this.email,this.razaoSocial,this.cnpj + "",this.senha,this.descricao,this.ramo,Login.getToken()};
         String jsonRecebido;
         json = new ToJson("atualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
@@ -136,6 +136,9 @@ public class Empresa {
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         if(json.getFuncao("status").equals("201")){
+            Login.setLogin(this.email);
+            Login.setSenha(this.senha);
+            Login.setToken(json.getFuncao("token"));
             return true;
         }else{
             return false;

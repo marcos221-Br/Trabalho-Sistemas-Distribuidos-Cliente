@@ -54,6 +54,7 @@ public class CadastrarEmpresaController {
         empresa = new Empresa(email.getText(),razaoSocial.getText(),ramo.getText(),descricao.getText(),senha.getText(),cnpj.getText());
         if(empresa.cadastrar()){
             novaExcecao("Empresa cadastrado com sucesso!", Color.GREEN);
+            ClientApplication.trocarTela("PrincipalEmpresa");
         }else{
             novaExcecao("Impossível cadastrar empresa!", Color.RED);
         }
