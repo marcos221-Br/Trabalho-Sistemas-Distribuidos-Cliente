@@ -1,10 +1,10 @@
 package com.example.trabalhosistemasdistribuidos.modelo;
 
-public class CompetenciaExperiencia {
+public class CompetenciaExperiencia{
     private String competencia;
-    private String experiencia;
+    private int experiencia;
 
-    public CompetenciaExperiencia(String competencia, String experiencia){
+    public CompetenciaExperiencia(String competencia, int experiencia){
         this.competencia = competencia;
         this.experiencia = experiencia;
     }
@@ -13,7 +13,7 @@ public class CompetenciaExperiencia {
         return this.competencia;
     }
 
-    public String getExperiencia(){
+    public int getExperiencia(){
         return this.experiencia;
     }
 
@@ -21,7 +21,7 @@ public class CompetenciaExperiencia {
         this.competencia = competencia;
     }
 
-    public void setExperiencia(String experiencia){
+    public void setExperiencia(int experiencia){
         this.experiencia = experiencia;
     }
 }

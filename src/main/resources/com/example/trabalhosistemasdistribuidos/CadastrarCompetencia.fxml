@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalhosistemasdistribuidos.CadastrarCompetenciaController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../../../estilos/LabelTextField.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../../estilos/LabelTextField.css" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="67.0" prefWidth="599.0">
                <children>
@@ -61,6 +61,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" text="Label" textFill="RED" visible="false" />
          </children>
          <BorderPane.margin>
             <Insets top="25.0" />

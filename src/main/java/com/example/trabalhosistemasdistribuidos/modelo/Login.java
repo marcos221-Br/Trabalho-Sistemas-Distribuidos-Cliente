@@ -19,7 +19,7 @@ public class Login {
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         if((json.getFuncao("status")+"").equals("200")){
-            Login.token = json.getFuncao("token");
+            Login.token = json.getFuncao("token")+"";
             return true;
         }else{
             return false;

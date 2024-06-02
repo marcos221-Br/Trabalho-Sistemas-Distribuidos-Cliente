@@ -83,12 +83,12 @@ public class Empresa {
         json = new ToJson("visualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
-            this.senha = json.getFuncao("senha");
-            this.cnpj = json.getFuncao("cnpj");
-            this.descricao = json.getFuncao("descricao");
-            this.ramo = json.getFuncao("ramo");
-            this.razaoSocial = json.getFuncao("razaoSocial");
+        if((json.getFuncao("status")+"").equals("201")){
+            this.senha = json.getFuncao("senha")+"";
+            this.cnpj = json.getFuncao("cnpj")+"";
+            this.descricao = json.getFuncao("descricao")+"";
+            this.ramo = json.getFuncao("ramo")+"";
+            this.razaoSocial = json.getFuncao("razaoSocial")+"";
             return true;
         }else{
             return false;
@@ -102,7 +102,7 @@ public class Empresa {
         json = new ToJson("apagarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             this.senha = "";
             this.cnpj = "";
             this.descricao = "";
@@ -121,7 +121,7 @@ public class Empresa {
         json = new ToJson("atualizarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             return true;
         }else{
             return false;
@@ -135,10 +135,10 @@ public class Empresa {
         json = new ToJson("cadastrarEmpresa",funcoes,valores);
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
-        if(json.getFuncao("status").equals("201")){
+        if((json.getFuncao("status")+"").equals("201")){
             Login.setLogin(this.email);
             Login.setSenha(this.senha);
-            Login.setToken(json.getFuncao("token"));
+            Login.setToken(json.getFuncao("token")+"");
             return true;
         }else{
             return false;

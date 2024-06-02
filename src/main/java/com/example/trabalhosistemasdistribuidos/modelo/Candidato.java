@@ -53,8 +53,8 @@ public class Candidato {
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         if((json.getFuncao("status")+"").equals("201")){
-            this.nome = json.getFuncao("nome");
-            this.senha = json.getFuncao("senha");
+            this.nome = json.getFuncao("nome")+"";
+            this.senha = json.getFuncao("senha")+"";
             return true;
         }else{
             return false;
@@ -101,7 +101,7 @@ public class Candidato {
         if((json.getFuncao("status")+"").equals("201")){
             Login.setLogin(this.email);
             Login.setSenha(this.senha);
-            Login.setToken(json.getFuncao("token"));
+            Login.setToken(json.getFuncao("token")+"");
             return true;
         }else{
             return false;

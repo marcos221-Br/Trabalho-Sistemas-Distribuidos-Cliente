@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.example.trabalhosistemasdistribuidos.enums.CompetenciaEnum;
 import com.example.trabalhosistemasdistribuidos.modelo.Competencia;
+import com.example.trabalhosistemasdistribuidos.modelo.VagaId;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,6 +71,31 @@ public class CadastrarVagaController {
 
     @FXML
     private Button btnRemoverCompetencia;
+    
+    @FXML
+    private TableView<VagaId> tabelaVagas;
+
+    @FXML
+    private TableColumn<VagaId, Integer> columnId;
+
+    @FXML
+    private TableColumn<VagaId, String> columnNome;
+
+    @FXML
+    private Button btnCarregar;
+
+    @FXML
+    private Button btnVisualizar;
+    
+    @FXML
+    void visualizar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void carregar(ActionEvent event) {
+
+    }
 
     @FXML
     void removerCompetencia(ActionEvent event) {
