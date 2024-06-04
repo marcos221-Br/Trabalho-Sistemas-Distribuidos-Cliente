@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalhosistemasdistribuidos.CadastrarVagaController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../../../estilos/LabelTextField.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../../estilos/LabelTextField.css" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
@@ -29,7 +29,6 @@
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
                               <Button fx:id="btnCarregar" mnemonicParsing="false" onAction="#carregar" styleClass="button-cadastrar" text="CARREGAR" />
-                              <Button fx:id="btnVisualizar" mnemonicParsing="false" onAction="#visualizar" styleClass="button-buscar" text="VISUALIZAR" />
                            </children>
                         </HBox>
                      </children>
@@ -128,6 +127,11 @@
                   </VBox>
                </children>
             </HBox>
+            <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" visible="false">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
          </children>
          <BorderPane.margin>
             <Insets top="25.0" />
