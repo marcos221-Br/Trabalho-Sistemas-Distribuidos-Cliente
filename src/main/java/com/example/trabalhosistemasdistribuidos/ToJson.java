@@ -20,6 +20,11 @@ public class ToJson {
         this.valores = valores;
     }
 
+    public ToJson(String operacao){
+        json = new JSONObject();
+        json.put("operacao", operacao);
+    }
+
     private void montarJson(){
         this.json.put("operacao",operacao);
         for (int i = 0; i < funcoes.length; i++) {
@@ -35,8 +40,12 @@ public class ToJson {
     @SuppressWarnings("exports")
     public void setJson(JSONObject json){
         int i = 0;
-        this.operacao = (String) json.get("operacao");
-        json.remove("operacao");
+        try{
+            this.operacao = (String) json.get("operacao");
+            json.remove("operacao");
+        }catch(Exception e){
+            System.out.println("Operação não enviada!");
+        }
         this.funcoes = new String[json.length()];
         this.valores = new Object[json.length()];
         for (String string : json.keySet()) {

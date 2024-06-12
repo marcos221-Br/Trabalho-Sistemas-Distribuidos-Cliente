@@ -94,7 +94,7 @@ public class PrincipalCandidatoController {
         try {
             fxmlCandidato = FXMLLoader.load(getClass().getResource("Candidato.fxml"));
             fxmlCompetencia = FXMLLoader.load(getClass().getResource("CadastrarCompetencia.fxml"));
-            fxmlVisualizar = FXMLLoader.load(getClass().getResource("VisualizarRemedioIdoso.fxml"));
+            fxmlVisualizar = FXMLLoader.load(getClass().getResource("VisualizarVagas.fxml"));
             principal.setCenter(fxmlVisualizar);
         } catch (Exception e) {
             System.out.println(e);

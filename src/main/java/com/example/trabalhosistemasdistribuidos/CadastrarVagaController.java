@@ -114,7 +114,7 @@ public class CadastrarVagaController {
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         for(int i = 0; i<((JSONArray) json.getFuncao("vagas")).length(); i++){
-            listaVagas.add(new VagaId(((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getString("nomeVaga"),((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getInt("idVaga")));
+            listaVagas.add(new VagaId(((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getString("nome"),((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getInt("idVaga")));
         }
         tabelaVagas.setItems(listaVagas);
     }
@@ -150,11 +150,11 @@ public class CadastrarVagaController {
         competencias.clear();
         vaga = new Vaga(tabelaVagas.getSelectionModel().getSelectedItem().getIdVaga());
         vaga.buscar();
-        nomeVaga.setText(tabelaVagas.getSelectionModel().getSelectedItem().getNomeVaga());
+        nomeVaga.setText(tabelaVagas.getSelectionModel().getSelectedItem().getNome()+"");
         idVaga.setText(tabelaVagas.getSelectionModel().getSelectedItem().getIdVaga()+"");
         faixaSalarialVaga.setText(vaga.getFaixaSalarial()+"");
-        descricaoVaga.setText(vaga.getDescricao());
-        estadoVaga.setValue(vaga.getEstado());
+        descricaoVaga.setText(vaga.getDescricao()+"");
+        estadoVaga.setValue(vaga.getEstado()+"");
         for (String competencia : vaga.getCompetencia()) {
             competencias.add(new Competencia(competencia));
         }
@@ -181,12 +181,7 @@ public class CadastrarVagaController {
         vaga = new Vaga(Integer.parseInt(idVaga.getText()));
         if(vaga.excluir()){
             novaMensagem("Vaga excluida com sucesso!", Color.GREEN);
-            nomeVaga.clear();
-            idVaga.clear();
-            faixaSalarialVaga.clear();
-            descricaoVaga.clear();
-            competencias.clear();
-            tabela.setItems(competencias);
+            carregar(event);
         }else{
             novaMensagem("Impossível excluir a vaga!", Color.RED);
         }
@@ -220,7 +215,7 @@ public class CadastrarVagaController {
         
         listaVagas = FXCollections.observableArrayList();
         columnId.setCellValueFactory(new PropertyValueFactory<>("idVaga"));
-        columnNome.setCellValueFactory(new PropertyValueFactory<>("nomeVaga"));
+        columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
     }
 
 }
