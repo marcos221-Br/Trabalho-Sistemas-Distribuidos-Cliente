@@ -102,7 +102,7 @@ public class PrincipalEmpresaController {
         try {
             fxmlEmpresa = FXMLLoader.load(getClass().getResource("Empresa.fxml"));
             fxmlVaga = FXMLLoader.load(getClass().getResource("CadastrarVaga.fxml"));
-            fxmlVisualizar = FXMLLoader.load(getClass().getResource("VisualizarRemedioIdoso.fxml"));
+            fxmlVisualizar = FXMLLoader.load(getClass().getResource("VisualizarCandidatos.fxml"));
             principal.setCenter(fxmlVisualizar);
         } catch (Exception e) {
             System.out.println(e);
