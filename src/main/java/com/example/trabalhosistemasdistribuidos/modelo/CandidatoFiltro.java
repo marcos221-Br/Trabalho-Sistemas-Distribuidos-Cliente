@@ -20,7 +20,7 @@ public class CandidatoFiltro {
     }
 
     public JSONObject getJson(){
-        json.put("competenciaExperiencias", competenciaExperiencias);
+        json.put("competenciasExperiencias", competenciaExperiencias);
         json.put("tipo",tipo);
         return json;
     }

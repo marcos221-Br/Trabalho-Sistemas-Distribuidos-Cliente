@@ -10,11 +10,9 @@ import org.json.JSONObject;
 import com.example.trabalhosistemasdistribuidos.enums.CompetenciaEnum;
 import com.example.trabalhosistemasdistribuidos.modelo.CandidatoFiltro;
 import com.example.trabalhosistemasdistribuidos.modelo.CompetenciaExperiencia;
-import com.example.trabalhosistemasdistribuidos.modelo.Filtro;
 import com.example.trabalhosistemasdistribuidos.modelo.FiltroCandidato;
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,27 +95,28 @@ public class VisualizarCandidatosController {
         String[] valores = {Login.getToken()};
         String jsonRecebido;
         json = new ToJson("filtrarCandidatos", funcoes, valores);
+        filtroClass = new CandidatoFiltro(tipoBox.getValue().toUpperCase());
         for (CompetenciaExperiencia competencia : tabelaFiltro.getItems()) {
             filtroClass.setCompetenciaExperiencia(competencia);
         }
-        //json.adicionarJson("filtros", CandidatoFiltro.getJson());
+        json.adicionarJson("filtros", filtroClass.getJson());
         jsonRecebido = ClientApplication.enviarSocket(json.getJson());
         json.setJson(new JSONObject(jsonRecebido));
         filtroCandidatoArray.clear();
         if((json.getFuncao("status")+"").equals("201")){
-            for (int i = 0; i < ((JSONArray) json.getFuncao("vagas")).length(); i++) {
-                FiltroCandidato filtroCandidato = new FiltroCandidato(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getInt("idCandidato"),
-                                                        ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("email"),
+            for (int i = 0; i < ((JSONArray) json.getFuncao("candidatos")).length(); i++) {
+                FiltroCandidato filtroCandidato = new FiltroCandidato(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("email"),
                                                         ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("nome"),
                                                         false);
-                for (int j = 0; j < ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competencias").length(); j++) {
-                    filtroCandidato.setCompetencias(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competencias").getString(j));
+                for (int j = 0; j < ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").length(); j++) {
+                    filtroCandidato.setCompetencias(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").getJSONObject(j).getString("competencia"));
+                    filtroCandidato.setExperiencias(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").getJSONObject(j).getInt("experiencia"));
                 }
                 filtroCandidatoArray.add(filtroCandidato);
             }
             tabelaVagas.setItems(filtroCandidatoArray);
         }else{
-            novaMensagem("Erro ao encontrar Vagas!", Color.RED);
+            novaMensagem("Erro ao encontrar Candidatos!", Color.RED);
         }
     }
 
@@ -155,9 +154,10 @@ public class VisualizarCandidatosController {
 
         this.filtroCandidatoArray = FXCollections.observableArrayList();
         this.columnCompetencias.setCellValueFactory(new PropertyValueFactory<>("competencias"));
+        this.columnExperiencias.setCellValueFactory(new PropertyValueFactory<>("experiencias"));
         this.columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        this.columnSelected.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        this.columnSelected.setCellFactory(CheckBoxTableCell.forTableColumn(this.columnSelected));
+        /*this.columnSelected.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        this.columnSelected.setCellFactory(CheckBoxTableCell.forTableColumn(this.columnSelected));*/
     }
 
 }
