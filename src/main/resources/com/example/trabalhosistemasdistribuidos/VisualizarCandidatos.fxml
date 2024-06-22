@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../estilos/LabelTextField.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalhosistemasdistribuidos.VisualizarCandidatosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../estilos/LabelTextField.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabalhosistemasdistribuidos.VisualizarCandidatosController">
    <top>
       <Pane prefHeight="5.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
    </top>
@@ -68,9 +68,8 @@
             </HBox>
             <Separator prefHeight="17.0" prefWidth="812.0" />
             <Label styleClass="label-modern" text="Candidatos" />
-            <TableView fx:id="tabelaVagas" prefHeight="323.0" prefWidth="812.0">
+            <TableView fx:id="tabelaCandidatos" prefHeight="323.0" prefWidth="812.0">
               <columns>
-                <TableColumn fx:id="columnSelect" prefWidth="27.20001220703125" />
                   <TableColumn fx:id="columnNome" prefWidth="292.7999801635742" text="Nome" />
                   <TableColumn fx:id="columnCompetencias" prefWidth="410.4000549316406" text="Competências" />
                   <TableColumn fx:id="columnExperiencias" prefWidth="92.800048828125" text="Experiências" />

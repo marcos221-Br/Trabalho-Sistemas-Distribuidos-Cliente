@@ -134,7 +134,7 @@ public class VisualizarVagasController {
         }
         filtroBox.setItems(this.listaCompetencias);
 
-        this.tipoConsulta = FXCollections.observableArrayList("and","or");
+        this.tipoConsulta = FXCollections.observableArrayList("and","or","all");
         tipoBox.setItems(this.tipoConsulta);
 
         this.filtro = FXCollections.observableArrayList();

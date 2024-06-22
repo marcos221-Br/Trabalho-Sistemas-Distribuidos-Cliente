@@ -19,10 +19,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
@@ -57,16 +57,13 @@ public class VisualizarCandidatosController {
     private TableColumn<FiltroCandidato, String> columnNome;
 
     @FXML
-    private TableColumn<FiltroCandidato, Boolean> columnSelected;
-
-    @FXML
     private ComboBox<String> filtroBox;
 
     @FXML
     private TableView<CompetenciaExperiencia> tabelaFiltro;
 
     @FXML
-    private TableView<FiltroCandidato> tabelaVagas;
+    private TableView<FiltroCandidato> tabelaCandidatos;
 
     @FXML
     private ComboBox<String> tipoBox;
@@ -105,16 +102,16 @@ public class VisualizarCandidatosController {
         filtroCandidatoArray.clear();
         if((json.getFuncao("status")+"").equals("201")){
             for (int i = 0; i < ((JSONArray) json.getFuncao("candidatos")).length(); i++) {
-                FiltroCandidato filtroCandidato = new FiltroCandidato(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("email"),
-                                                        ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("nome"),
-                                                        false);
+                FiltroCandidato filtroCandidato = new FiltroCandidato(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getInt("idCandidato"),
+                                                        ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("email"),
+                                                        ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getString("nome"));
                 for (int j = 0; j < ((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").length(); j++) {
                     filtroCandidato.setCompetencias(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").getJSONObject(j).getString("competencia"));
                     filtroCandidato.setExperiencias(((JSONArray) json.getFuncao("candidatos")).getJSONObject(i).getJSONArray("competenciasExperiencias").getJSONObject(j).getInt("experiencia"));
                 }
                 filtroCandidatoArray.add(filtroCandidato);
             }
-            tabelaVagas.setItems(filtroCandidatoArray);
+            tabelaCandidatos.setItems(filtroCandidatoArray);
         }else{
             novaMensagem("Erro ao encontrar Candidatos!", Color.RED);
         }
@@ -122,7 +119,23 @@ public class VisualizarCandidatosController {
 
     @FXML
     void enviar(ActionEvent event) {
-
+        desativarMensagem();
+        ArrayList<Integer> candidatos = new ArrayList<>();
+        String[] funcoes = {"token","email"};
+        String[] valores = {Login.getToken(),Login.getLogin()};
+        String jsonRecebido;
+        json = new ToJson("enviarMensagem", funcoes, valores);
+        for (FiltroCandidato candidato : tabelaCandidatos.getSelectionModel().getSelectedItems()) {
+            candidatos.add(candidato.getIdCandidato());
+        }
+        json.adicionarJson("candidatos", candidatos);
+        jsonRecebido = ClientApplication.enviarSocket(json.getJson());
+        json.setJson(new JSONObject(jsonRecebido));
+        if((json.getFuncao("status")+"").equals("201")){
+            novaMensagem("Mensagens enviadas com sucesso!", Color.GREEN);
+        }else{
+            novaMensagem("Erro ao encontrar Candidatos!", Color.RED);
+        }
     }
 
     private void desativarMensagem(){
@@ -144,7 +157,7 @@ public class VisualizarCandidatosController {
         }
         filtroBox.setItems(this.listaCompetencias);
 
-        this.tipoConsulta = FXCollections.observableArrayList("and","or");
+        this.tipoConsulta = FXCollections.observableArrayList("and","or","all");
         tipoBox.setItems(this.tipoConsulta);
 
         this.filtro = FXCollections.observableArrayList();
@@ -156,8 +169,7 @@ public class VisualizarCandidatosController {
         this.columnCompetencias.setCellValueFactory(new PropertyValueFactory<>("competencias"));
         this.columnExperiencias.setCellValueFactory(new PropertyValueFactory<>("experiencias"));
         this.columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        /*this.columnSelected.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        this.columnSelected.setCellFactory(CheckBoxTableCell.forTableColumn(this.columnSelected));*/
+        this.tabelaCandidatos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
 }

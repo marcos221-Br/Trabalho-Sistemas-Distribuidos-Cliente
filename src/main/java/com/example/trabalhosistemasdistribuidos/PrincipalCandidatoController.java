@@ -18,6 +18,7 @@ public class PrincipalCandidatoController {
     private Parent fxmlCandidato = null;
     private Parent fxmlCompetencia = null;
     private Parent fxmlVisualizar = null;
+    private Parent fxmlMensagem = null;
     private ToJson json;
 
     @FXML
@@ -43,6 +44,11 @@ public class PrincipalCandidatoController {
     @FXML
     void cadastrarCandidato(ActionEvent event) {
         setTela("Candidato");
+    }
+
+    @FXML
+    void visualizarMensagens(ActionEvent event) {
+        setTela("Mensagem");
     }
 
     @FXML
@@ -84,6 +90,10 @@ public class PrincipalCandidatoController {
             case "Visualizar":
                 principal.setCenter(fxmlVisualizar);
                 break;
+
+            case "Mensagem":
+                principal.setCenter(fxmlMensagem);
+                break;
         }
     }
 
@@ -95,6 +105,7 @@ public class PrincipalCandidatoController {
             fxmlCandidato = FXMLLoader.load(getClass().getResource("Candidato.fxml"));
             fxmlCompetencia = FXMLLoader.load(getClass().getResource("CadastrarCompetencia.fxml"));
             fxmlVisualizar = FXMLLoader.load(getClass().getResource("VisualizarVagas.fxml"));
+            fxmlMensagem = FXMLLoader.load(getClass().getResource("Mensagem.fxml"));
             principal.setCenter(fxmlVisualizar);
         } catch (Exception e) {
             System.out.println(e);
