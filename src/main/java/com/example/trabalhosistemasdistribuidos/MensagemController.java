@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.example.trabalhosistemasdistribuidos.modelo.Login;
+import com.example.trabalhosistemasdistribuidos.modelo.MensagemEmpresa;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -15,12 +16,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
 public class MensagemController {
 
     private ToJson json;
-    private ObservableList<String> listaEmpresas;
+    private static ObservableList<MensagemEmpresa> listaEmpresas;
     
     @FXML
     private ResourceBundle resources;
@@ -29,16 +31,22 @@ public class MensagemController {
     private URL location;
 
     @FXML
-    private TableColumn<String, String> columnEmpresas;
+    private TableColumn<MensagemEmpresa, String> columnEmail;
 
     @FXML
-    private TableView<String> tableEmpresas;
+    private TableColumn<MensagemEmpresa, String> columnNome;
+
+    @FXML
+    private TableColumn<MensagemEmpresa, String> columnRamo;
+
+    @FXML
+    private TableView<MensagemEmpresa> tableEmpresas;
 
     @FXML
     private Label mensagem;
 
     @FXML
-    void carregarMensagens(){
+    public void carregarMensagens(){
         this.desativarMensagem();
         String[] funcoes = {"token","email"};
         String[] valores = {Login.getToken(),Login.getLogin()};
@@ -48,7 +56,10 @@ public class MensagemController {
         json.setJson(new JSONObject(jsonRecebido));
         if((json.getFuncao("status")+"").equals("201")){
             for (int i = 0; i < ((JSONArray)json.getFuncao("empresas")).length(); i++) {
-                listaEmpresas.add(((JSONArray)json.getFuncao("empresas")).getString(i));
+                System.out.println(((JSONArray)json.getFuncao("empresas")).get(i));
+                listaEmpresas.add(new MensagemEmpresa(((JSONArray)json.getFuncao("empresas")).getJSONObject(i).getString("nome"),
+                                                    ((JSONArray)json.getFuncao("empresas")).getJSONObject(i).getString("email"),
+                                                    ((JSONArray)json.getFuncao("empresas")).getJSONObject(i).getString("ramo")));
             }
             this.tableEmpresas.setItems(listaEmpresas);
         }else{
@@ -69,7 +80,9 @@ public class MensagemController {
 
     @FXML
     void initialize() {
-        this.listaEmpresas = FXCollections.observableArrayList();
-        this.columnEmpresas.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+        listaEmpresas = FXCollections.observableArrayList();
+        this.columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        this.columnRamo.setCellValueFactory(new PropertyValueFactory<>("ramo"));
     }
 }

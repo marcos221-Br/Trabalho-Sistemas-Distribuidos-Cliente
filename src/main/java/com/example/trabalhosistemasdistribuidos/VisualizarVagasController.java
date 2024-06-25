@@ -106,7 +106,6 @@ public class VisualizarVagasController {
                 for (int j = 0; j < ((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getJSONArray("competencias").length(); j++) {
                     filtroVaga.setCompetencias(((JSONArray) json.getFuncao("vagas")).getJSONObject(i).getJSONArray("competencias").getString(j));
                 }
-                System.out.println(filtroVaga);
                 filtroVagaArray.add(filtroVaga);
             }
             tabelaVagas.setItems(filtroVagaArray);

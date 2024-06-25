@@ -12,6 +12,7 @@ public class FiltroCandidato {
     private ArrayList<Integer> experiencias;
 
     public FiltroCandidato(Integer idCandidato, String email, String nome){
+        this.idCandidato = idCandidato;
         this.email = email;
         this.nome = nome;
         competencias = new ArrayList<>();
@@ -56,6 +57,6 @@ public class FiltroCandidato {
 
     @Override
     public String toString() {
-        return "FiltroCandidato [email=" + email + ", nome=" + nome + ", competencias=" + competencias + "]";
+        return "FiltroCandidato [IdCandidato: " + idCandidato + ", email=" + email + ", nome=" + nome + ", competencias=" + competencias + "]";
     }
 }
